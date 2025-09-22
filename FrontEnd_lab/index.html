@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Esqueça tudo</title>
+    </head>
+    <body>
+        <h1>Bem−vindo ao Sistema</h1>
+        <h2>Gerenciamento de Clientes</h2>
+        <p>
+            Este sistema permite cadastrar, listar, atualizar e excluir clientes.
+        </p>
+        <h3>Operações</h3>
+        <ol>
+            <li>Cadastrar cliente</li>
+            <li>Listar clientes</li>
+            <li>Atualizar cliente</li>
+            <li>Excluir cliente</li>
+        </ol>
+
+
+        Conteúdo visível pelo usúario
+        <a href=”https://www.thymeleaf.org/” target=” blank”>Site oficial do Thymeleaf</a>
+        <table>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Idade</th>
+            </tr>
+            <tr>
+                <td>Ana</td>
+                <td>ana@email.com</td>
+                <td>25</td>
+            </tr>
+        </table>
+        <form action=”/clientes” method=”post”>
+            <label for=”nome”>Nome:</label>
+            <input type=”text” id=”nome” name=”nome” required><br>
+            <label for=”email”>Email:</label>
+            <input type=”email” id=”email” name=”email” required><br>
+            <label for=”idade”>Idade:</label>
+            <input type=”number” id=”idade” name=”idade”><br>
+            <button type=”submit”>Salvar</button>
+            <button type=”reset”>Limpar</button>
+        </form>
+    </body>
+</html>

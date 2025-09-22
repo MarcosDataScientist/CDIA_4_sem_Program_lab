@@ -27,12 +27,12 @@ public class Contact {
     @Size(max = 150, message = "The email must be no longer than 150 characters.")
     private String email;
 
-    @NotBlank(message = "Address is required.")
     @Size(max = 150, message = "The address must be no longer than 150 characters.")
     private String address;
 
     @NotNull(message = "The birth date can't be empty.")
     @DateTimeFormat
+    @Column(name = "birthDate")
     private Date birthDate;
 
     //Empty constructor
@@ -47,6 +47,9 @@ public class Contact {
         this.birthDate = birthDate;
     }
 
+    public Long getId() {
+        return id;
+    }
     public String getName() {
         return name;
     }

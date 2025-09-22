@@ -28,41 +28,29 @@ public class ContactController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Contact> search(@PathVariable Long id) {
-        try{
-            return ResponseEntity.ok(contactService.searchContact(id));
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<?> search(@PathVariable Long id) {
+        return ResponseEntity.ok(contactService.searchContact(id));
     }
 
     @PostMapping
-    public ResponseEntity<Contact> registration(@Valid @RequestBody Contact contact) {
-        Contact save = contactService.addContact(contact);
-        return ResponseEntity.status(HttpStatus.CREATED).body(save);
+    public ResponseEntity<String> registration(@Valid @RequestBody Contact contact) {
+        contactService.addContact(contact);
+        return ResponseEntity.ok("Contact successfully added");
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
-        try{
-            contactService.removeContact(id);
-            return ResponseEntity.ok("Contact successfully removed");
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+        contactService.removeContact(id);
+        return ResponseEntity.ok("Contact successfully removed");
     }
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<Contact> update(
+    public ResponseEntity<String> update(
             @PathVariable Long id,
             @RequestBody Contact updatedContact){
-        try{
-            Contact update = contactService.updateContact(id, updatedContact);
-            return ResponseEntity.ok(update);
-        } catch (Exception e){
-            return ResponseEntity.notFound().build();
-        }
+        contactService.updateContact(id, updatedContact);
+        return ResponseEntity.ok("Contact successfully updated");
     }
 
     @GetMapping("/_template")
