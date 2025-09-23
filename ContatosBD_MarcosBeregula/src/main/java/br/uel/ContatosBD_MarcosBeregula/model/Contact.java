@@ -16,7 +16,7 @@ public class Contact {
     private Long id;
 
     @NotBlank(message = "The name can't be empty.")
-    @Size(max = 100, message = "The name must be no longer than 100 characters.")
+    @Size(max = 20, message = "The name must be no longer than 100 characters.")
     private String name;
 
     @NotBlank(message = "The phone can't be empty")
@@ -31,7 +31,7 @@ public class Contact {
     private String address;
 
     @NotNull(message = "The birth date can't be empty.")
-    @DateTimeFormat
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(name = "birthDate")
     private Date birthDate;
 
@@ -66,6 +66,9 @@ public class Contact {
         return birthDate;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
     public void setName(String name) {
         this.name = name;
     }

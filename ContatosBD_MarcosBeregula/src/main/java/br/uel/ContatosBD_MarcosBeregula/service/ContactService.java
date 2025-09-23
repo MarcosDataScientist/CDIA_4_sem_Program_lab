@@ -12,10 +12,8 @@ import java.util.List;
 
 @Service
 public class ContactService {
-
     @Autowired
     private ContactRepository contactRepository;
-
 
     public List<Contact> listContacts() {
         return contactRepository.findAll();
@@ -49,10 +47,10 @@ public class ContactService {
         return contactRepository.findById(id)
                 .map(c->{
                     if (contactRepository.existsContactByEmailAndIdNot(contactAtt.getEmail(), id)) {
-                        throw new ResponseStatusException(HttpStatus.BAD_REQUEST ,"Email already in use: " + contactAtt.getEmail());
+                        throw new ResponseStatusException(HttpStatus.BAD_REQUEST ,"Email already in use");
                     }
                     if (contactRepository.existsContactByPhoneAndIdNot(contactAtt.getPhone(), id)) {
-                        throw new ResponseStatusException(HttpStatus.BAD_REQUEST ,"Phone already in use: " + contactAtt.getPhone());
+                        throw new ResponseStatusException(HttpStatus.BAD_REQUEST ,"Phone already in use");
                     }
                     c.setName(contactAtt.getName());
                     c.setEmail(contactAtt.getEmail());
