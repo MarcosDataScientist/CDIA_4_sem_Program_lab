@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact – form</title>
+</head>
+    <body>
+        <h1 th:text="${contact.id} != null ? 'Edit Contact' : 'New contact'"></h1>
+
+        <form th:if="${contact.id} == null"
+                th:action="@{/contacts}" method="post" th:object="${contact}">
+
+            <label for="name">Name:</label>
+            <input th:field="*{name}" id="name" type="text" required><br>
+            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+
+            <label for="phone">Phone:</label>
+            <input th:field="*{phone}" id="phone" type="text" required><br>
+            <div th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></div>
+
+            <label for="email">Email:</label>
+            <input th:field="*{email}" id="email" type="email" required><br>
+            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+
+            <label for="address">Address:</label>
+            <input th:field="*{address}" id="address" type="text" required><br>
+            <div th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></div>
+
+            <label for="birthDate">Idade:</label>
+            <input th:field="*{birthDate}" id="birthDate" type="date"><br>
+            <div th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}"></div>
+
+            <button type="submit">Registry</button>
+            <a th:href="@{/contacts}">Cancel</a>
+        </form>
+
+        <form th:if="${contact.id} != null"
+              th:action="@{/contacts/edit/{id}(id=${contact.id})}" method="post" th:object="${contact}">
+            <input type="hidden" name="_method" value="put"/>
+
+            <input th:field="*{id}" id="id" type="hidden"/>
+
+            <label for="name">Name:</label>
+            <input th:field="*{name}" id="name" type="text" required><br>
+            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+
+            <label for="phone">Phone:</label>
+            <input th:field="*{phone}" id="phone" type="text" ><br>
+            <div th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></div>
+
+            <label for="email">Email:</label>
+            <input th:field="*{email}" id="email" type="email" required><br>
+            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+
+            <label for="address">Address:</label>
+            <input th:field="*{address}" id="address" type="text" required><br>
+            <div th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></div>
+
+            <label for="birthDate">Idade:</label>
+            <input th:field="*{birthDate}" id="birthDate" type="date"><br>
+            <div th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}"></div>
+
+            <button type="submit">Update</button>
+            <a th:href="@{/contacts}">Cancel</a>
+        </form>
+    </body>
+</html>
